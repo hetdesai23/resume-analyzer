@@ -27,7 +27,7 @@ if uploaded_file and job_description:
 
     score = result["score"]
 
-    # 🔥 SCORE CARD
+    # SCORE CARD
     st.markdown("## 📊 Resume Strength")
 
     st.progress(score / 100)
@@ -39,7 +39,7 @@ if uploaded_file and job_description:
     else:
         st.error(f"{score}% — Needs improvement — you're on the right track ⚠️")
 
-    # 🟢 STRONG AREAS
+    # STRONG AREAS
     st.markdown("## 🟢 Where You’re Strong")
     if result["strong"]:
         for s in result["strong"]:
@@ -47,7 +47,7 @@ if uploaded_file and job_description:
     else:
         st.write("No strong areas detected")
 
-    # 🔴 MISSING
+    # MISSING
     st.markdown("## 🔴 What You're Missing")
     if result["missing_groups"]:
         for m in result["missing_groups"]:
@@ -55,18 +55,18 @@ if uploaded_file and job_description:
     else:
         st.write("No major gaps")
 
-    # 💡 ACTION PLAN
+    # ACTION PLAN
     st.markdown("## 💡 Action Plan")
     for i, sug in enumerate(result["suggestions"], 1):
         st.write(f"{i}. {sug}")
 
-    # 🧠 RESUME IMPROVEMENT (🔥 WOW FEATURE)
+    # RESUME IMPROVEMENT 
     st.markdown("## ✍️ Improve Your Resume (Use these lines)")
 
     for line in improvements:
         st.code(line)
 
-    # 🎯 FINAL SUMMARY
+    # SUMMARY
     st.markdown("## 📌 Final Summary")
     st.write(f"✔ Match Score: {score}%")
     st.write(f"✔ Strong Areas: {len(result['strong'])}")
