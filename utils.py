@@ -2,14 +2,14 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# 🔥 Generic words to ignore
+# Generic words to ignore
 GENERIC_WORDS = set([
     "work", "team", "skills", "ability", "knowledge", "responsible",
     "good", "strong", "understanding", "experience", "working",
     "technical", "management", "development", "tasks"
 ])
 
-# 🔥 Skill groups (domain-agnostic)
+# Skill groups
 SKILL_GROUPS = {
     "Programming": ["python", "java", "c++", "c", "r"],
     "Web Development": ["html", "css", "javascript", "frontend", "backend"],
@@ -28,7 +28,7 @@ def clean_text(text):
     return text
 
 
-# 🔥 Simple tokenizer (NO NLTK)
+# tokenizer
 def extract_keywords(text):
     words = text.split()
     words = [w for w in words if w not in GENERIC_WORDS and len(w) > 2]
@@ -68,7 +68,7 @@ def analyze_resume(resume_text, job_description):
 
     final_score = (0.6 * keyword_score + 0.4 * semantic) * 100
 
-    # 🔥 Skill grouping
+    # Skill grouping
     resume_groups = extract_skills_by_group(resume_text)
     jd_groups = extract_skills_by_group(job_description)
 
@@ -81,7 +81,7 @@ def analyze_resume(resume_text, job_description):
         else:
             missing_groups.append(group)
 
-    # 🔥 Smart suggestions
+    # Suggestions
     suggestions = []
 
     for group in missing_groups:
